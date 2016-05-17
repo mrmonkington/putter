@@ -8,6 +8,7 @@ import errno
 app = Flask(__name__)
 
 app.config['ASSET_ROOT'] = '/var/www/assets/'
+app.debug = True
 try:
     app.config.from_envvar('PUTTER_SETTINGS')
 except RuntimeError:
@@ -36,7 +37,7 @@ def upload(path):
 
     with open(fullpath, 'w') as f:
         shutil.copyfileobj(request.stream, f)
-    return 'PUT {} bytes\n'.format(request.content_length), 200, []
+    return 'PUT {0} bytes\n'.format(request.content_length), 200, []
 
 if __name__ == '__main__':
     app.run()
