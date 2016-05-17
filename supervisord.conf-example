@@ -1,0 +1,7 @@
+[program:putter]
+command=/opt/putter/env/bin/gunicorn -b <host>:<port> put:app -e PUTTER_SETTINGS=/etc/putter.cfg --access-logfile /var/log/gamernetwork/putter.log
+directory=/opt/putter/
+user=www-data
+autostart=true
+autorestart=true
+redirect_stderr=true

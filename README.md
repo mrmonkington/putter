@@ -11,19 +11,38 @@ virtualenv env
 env/bin/pip install -r requirements.txt
 ```
 
-Configure `setings.cfg`
+Configure `putter.cfg`
 
 ```
 ASSET_ROOT="/var/www/assets/"
 SERVER_NAME="localhost:5000"
 ```
 
-## Run
+## Test
 
 ```
-PUTTER_SETTINGS=settings.cfg env/bin/python put.py
+PUTTER_SETTINGS=putter.cfg env/bin/python put.py
 ```
 
-## Harden
+## Doing it properly
 
-You probably want to run it with supervisord
+Install to `/opt/gamernetwork/putter/`
+
+```
+cp putter.cfg-example /etc/putter.cfg
+```
+
+Install under supervisord.
+
+```
+apt-get install supervisor
+cp supervisor.conf-example /etc/supervisor/conf.d/putter.conf
+vi /etc/supervisor/conf.d/putter.conf # at very least make <host> and <port> sensible
+mkdir /var/log/gamernetwork/
+touch /var/log/gamernetwork/putter.log
+chown www-data /var/log/gamernetwork/putter.log
+supervisorctl reload
+```
+
+Should be running at this point.
+
