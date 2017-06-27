@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request
+from flask import abort
+from flask import send_from_directory
 
 import os
 import shutil
@@ -38,6 +40,10 @@ def upload(path):
     with open(fullpath, 'w') as f:
         shutil.copyfileobj(request.stream, f)
     return 'PUT {0} bytes\n'.format(request.content_length), 200, []
+
+@app.route('/<path:path>', methods=['GET','HEAD',])
+def fetch(path):
+    return send_from_directory(app.config['ASSET_ROOT'], path)
 
 if __name__ == '__main__':
     app.run()
