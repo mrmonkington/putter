@@ -26,6 +26,12 @@ SERVER_NAME="localhost:5000"
 PUTTER_SETTINGS=putter.cfg env/bin/python put.py
 ```
 
+PUT to it
+
+```
+curl -X PUT -T ~/something.jpg http://localhost:5000/some/folder/something.jpg
+```
+
 ## Doing it properly
 
 Install to `/opt/gamernetwork/putter/`
