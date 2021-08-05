@@ -1,5 +1,3 @@
-Want to work for Gamer Network? [We are hiring!](http://www.gamesindustry.biz/jobs/gamer-network)
-
 # Putter
 
 A tiny server for uploading files using HTTP PUT.
